@@ -1,9 +1,6 @@
 class Solution:
     def possibleStringCount(self, word):
-        """
-        :type word: str
-        :rtype: int
-        """
+       
         n = len(word)
         count  = n
         for i in range(1,n):
