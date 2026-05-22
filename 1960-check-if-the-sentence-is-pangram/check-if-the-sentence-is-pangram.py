@@ -1,17 +1,13 @@
 class Solution(object):
     def checkIfPangram(self, sentence):
         
-        hashMap = {}
+        if len(sentence) < 26:
+            return False
 
-        for i in range(len(sentence)):
-            if sentence[i] in hashMap:
-                hashMap[sentence[i]] += 1
-            else:
-                hashMap[sentence[i]] = 1
-        for letter in "abcdefghijklmnopqrstuvwxyz":
-            if letter not in hashMap:
+        for i in range(26):
+            if chr(i+97) not in sentence:
                 return False
-
+        
         return True
 
         
