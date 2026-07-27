@@ -1,6 +1,7 @@
 class Solution(object):
     def productExceptSelf(self, nums):
-        ans = [1] * len(nums)
+        n = len(nums)
+        ans = [1] * n
         prefix = 1
         postfix = 1
         for i in range(len(nums)):
