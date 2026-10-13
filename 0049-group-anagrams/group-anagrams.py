@@ -8,4 +8,5 @@ class Solution:
             for c in s:
                 count[ord(c) - ord('a')] += 1
             anagrams[tuple(count)].append(s)
+            
         return list(anagrams.values())
