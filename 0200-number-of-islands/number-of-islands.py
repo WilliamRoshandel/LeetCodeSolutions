@@ -1,29 +1,30 @@
 class Solution(object):
     def numIslands(self, grid):
-        if not grid:
-            return 0
-        
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
         rows, cols = len(grid), len(grid[0])
-        visited = set()
         islands = 0
 
-        def bfs(r, c):
-            q = collections.deque()
-            visited.add((r, c))
-            q.append((r, c))
+        def dfs(i, j):
+            if grid[i][j] != '1':
+                return
+            grid[i][j] = '0'
 
-            while q:
-                row, col = q.pop()
-                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-                for dr, dc in directions:
-                    r, c = row + dr, col + dc
-                    if r in range(rows) and c in range(cols) and (r, c) not in visited and grid[r][c] == "1":
-                        q.append((r, c))
-                        visited.add((r, c))
-
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1" and (r, c) not in visited:
-                    bfs(r, c)
+            if i > 0:
+                dfs(i - 1, j)   #goes up a row: i + 1
+            if i < rows - 1:
+                dfs(i + 1, j)   #Check the row below: i - 1
+            if j > 0:
+                dfs(i, j - 1)
+            if j < cols - 1:
+                dfs(i, j + 1)
+    
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == '1':
+                    dfs(i, j)
                     islands += 1
+
         return islands
